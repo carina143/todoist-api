@@ -30,12 +30,13 @@ curl https://api.todoist.com/api/v1/tasks \
 
 - Token wie ein Passwort behandeln.
 - Nicht in clientseitigem Code oder öffentlichen Repos speichern.
+- `secrets.json` niemals committen oder in Pull Requests aufnehmen.
 - Wenn ein Account-Objekt fehlt, nur Vorlagen, Beispiele oder Integrationsplan liefern.
 - Für OAuth-Integrationen Client-ID, Client-Secret und Redirect-URLs im Todoist App Management sauber verwalten.
 
 ## Quellen
 
 - Todoist API
-  - URL: https://developer.todoist.com/api/v1/
+  - URL: <https://developer.todoist.com/api/v1/>
   - Relevante Stellen: Authorization, OAuth
   - Gelesen: 2026-05-06

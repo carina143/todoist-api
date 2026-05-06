@@ -7,12 +7,15 @@ const API_BASE = 'https://api.todoist.com/api/v1';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..');
+const REPO_ROOT = path.resolve(__dirname, '..');
+const LEGACY_WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..');
 
 function candidateSecretsPaths() {
   return [
     path.join(os.homedir(), '.openclaw', 'secrets.json'),
-    path.join(WORKSPACE_ROOT, 'secrets.json')
+    path.join(REPO_ROOT, 'secrets.json'),
+    path.join(process.cwd(), 'secrets.json'),
+    path.join(LEGACY_WORKSPACE_ROOT, 'secrets.json')
   ];
 }
 

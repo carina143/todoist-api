@@ -10,21 +10,21 @@ Kompakter Skill für Todoist-Workflows rund um Tasks, Projects, Quick Add, Sync 
 
 ## Lokale Todo-Wissensschicht
 
-Für diesen Skill ist Todoist das operative System of Record. Zusätzlich gibt es eine schlanke lokale Wissensschicht unter [memory/references/todos](/Users/martin/Agents/boku-martin/memory/references/todos/README.md), die nicht als zweites Todo-System gedacht ist, sondern als Agentenhilfe für:
+Für diesen Skill ist Todoist das operative System of Record. Optional kann es eine schlanke lokale Wissensschicht unter `memory/references/todos/` geben, die nicht als zweites Todo-System gedacht ist, sondern als Agentenhilfe für:
 
 - Nutzungsregeln
 - Routing zu Projects und Sections
 - Dedupe bei automatisch erkannten Todos
 - Review-Fälle bei unklarer Zuordnung
 
-Wichtige Dateien:
+Typische Dateien:
 
-- [memory/references/todos/README.md](/Users/martin/Agents/boku-martin/memory/references/todos/README.md)
-- [memory/references/todos/todoist-usage.md](/Users/martin/Agents/boku-martin/memory/references/todos/todoist-usage.md)
-- [memory/references/todos/routing-rules.md](/Users/martin/Agents/boku-martin/memory/references/todos/routing-rules.md)
-- [memory/references/todos/projects.json](/Users/martin/Agents/boku-martin/memory/references/todos/projects.json)
-- [memory/references/todos/created-tasks.json](/Users/martin/Agents/boku-martin/memory/references/todos/created-tasks.json)
-- [memory/references/todos/review-queue.json](/Users/martin/Agents/boku-martin/memory/references/todos/review-queue.json)
+- `memory/references/todos/README.md`
+- `memory/references/todos/todoist-usage.md`
+- `memory/references/todos/routing-rules.md`
+- `memory/references/todos/projects.json`
+- `memory/references/todos/created-tasks.json`
+- `memory/references/todos/review-queue.json`
 
 Empfohlenes Betriebsmodell:
 
@@ -46,6 +46,7 @@ Wichtig:
 - Secrets in einer der folgenden Dateien:
   - `~/.openclaw/secrets.json`
   - `secrets.json` im Workspace-Root (Fallback)
+- Sicherheitsregel: `secrets.json` niemals committen oder in Pull Requests aufnehmen.
 
 Erwartete Struktur:
 
@@ -72,7 +73,7 @@ Vom Repo-Root [skills/todoist-api](skills/todoist-api):
 ```bash
 node scripts/list-projects.mjs --limit 10
 node scripts/list-tasks.mjs --limit 10
-node scripts/quick-add-task.mjs --text "Review BOKU project plan tomorrow 10am #Inbox"
+node scripts/quick-add-task.mjs --text "Review project plan tomorrow 10am #Inbox"
 node scripts/sync-resources.mjs --resources projects,items,sections,labels
 ```
 
