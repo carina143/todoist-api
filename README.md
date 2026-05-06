@@ -8,6 +8,38 @@ Kompakter Skill für Todoist-Workflows rund um Tasks, Projects, Quick Add, Sync 
 - [scripts/](scripts/): wiederverwendbare Node-Skripte für Todoist API
 - [references/](references/): kuratierte Fachreferenzen zur Todoist-Doku
 
+## Lokale Todo-Wissensschicht
+
+Für diesen Skill ist Todoist das operative System of Record. Zusätzlich gibt es eine schlanke lokale Wissensschicht unter [memory/references/todos](/Users/martin/Agents/boku-martin/memory/references/todos/README.md), die nicht als zweites Todo-System gedacht ist, sondern als Agentenhilfe für:
+
+- Nutzungsregeln
+- Routing zu Projects und Sections
+- Dedupe bei automatisch erkannten Todos
+- Review-Fälle bei unklarer Zuordnung
+
+Wichtige Dateien:
+
+- [memory/references/todos/README.md](/Users/martin/Agents/boku-martin/memory/references/todos/README.md)
+- [memory/references/todos/todoist-usage.md](/Users/martin/Agents/boku-martin/memory/references/todos/todoist-usage.md)
+- [memory/references/todos/routing-rules.md](/Users/martin/Agents/boku-martin/memory/references/todos/routing-rules.md)
+- [memory/references/todos/projects.json](/Users/martin/Agents/boku-martin/memory/references/todos/projects.json)
+- [memory/references/todos/created-tasks.json](/Users/martin/Agents/boku-martin/memory/references/todos/created-tasks.json)
+- [memory/references/todos/review-queue.json](/Users/martin/Agents/boku-martin/memory/references/todos/review-queue.json)
+
+Empfohlenes Betriebsmodell:
+
+1. Ein Agent erkennt aus Mail, Meeting oder Projektkontext ein mögliches Todo.
+2. Der Skill nutzt die Regeln aus `memory/references/todos/`, um zu entscheiden, ob überhaupt ein echter Task angelegt werden soll.
+3. Wenn Zielprojekt, Formulierung und Dringlichkeit klar sind, wird der Task in Todoist angelegt.
+4. Lokal wird nur minimale Trace-Information für Dedupe oder spätere Nachvollziehbarkeit gespeichert.
+5. Unklare Fälle werden lokal als Review-Fälle vorgemerkt statt blind angelegt.
+
+Wichtig:
+
+- Keine Vollspiegelung aller Todoist-Tasks unter `memory/references/todos/`.
+- Kein konkurrierendes lokales Task-System aufbauen.
+- Lokal nur das pflegen, was Todoist nicht ohnehin besser als operative Quelle hält.
+
 ## Voraussetzungen
 
 - Node.js (empfohlen: aktuelles LTS oder neuer)

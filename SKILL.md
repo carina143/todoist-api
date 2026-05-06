@@ -72,6 +72,11 @@ Wenn du Todoist noch nicht gut genug kennst oder wenn sich das Thema nach aktuel
    - Wenn Hilfsskripte nötig sind, lege sie unter `scripts/` des Skills an und bevorzuge wiederverwendbare, klar benannte Skripte statt einmaliger Ad-hoc-Dateien.
    - Gemeinsame HTTP-, Auth- und Fehlerlogik bevorzugt in Shared-Module auslagern statt sie in mehrere Skripte zu kopieren.
 
+6. Trenne operative Tasks von lokaler Wissensschicht.
+   - Todoist ist Source of Truth für echte Aufgaben.
+   - Lokales Routing-, Dedupe- und Review-Wissen liegt unter `memory/references/todos/`.
+   - Für Zweck, Struktur und Regeln dort zuerst `memory/references/todos/README.md` lesen.
+
 ## Empfehlung: Skill vor Tool
 
 Für neue Todoist-Arbeit standardmäßig so vorgehen:
@@ -101,6 +106,7 @@ Vorgehen:
 
 Vorgehen:
 - zuerst `references/tasks.md` lesen
+- für lokale Nutzungs- und Routingregeln zusätzlich `memory/references/todos/README.md`, `todoist-usage.md` und `routing-rules.md` lesen
 - Natural-Language-Text möglichst explizit formulieren
 - optional `note`, `auto_reminder` und `parse_labels` gezielt setzen
 - Ergebnisobjekt prüfen statt nur auf Erfolg zu hoffen
