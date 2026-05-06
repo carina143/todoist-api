@@ -76,6 +76,7 @@ Wenn du Todoist noch nicht gut genug kennst oder wenn sich das Thema nach aktuel
    - Todoist ist Source of Truth für echte Aufgaben.
    - Lokales Routing-, Dedupe- und Review-Wissen liegt unter `memory/references/todos/`.
    - Für Zweck, Struktur und Regeln dort zuerst `memory/references/todos/README.md` lesen.
+   - Wenn ein Task direkt aus einer E-Mail abgeleitet wird, die `message_id` in der Task-Beschreibung oder Note mitführen, damit der Quellenbezug in Todoist selbst sichtbar bleibt.
 
 ## Empfehlung: Skill vor Tool
 
@@ -111,6 +112,23 @@ Vorgehen:
 - optional `note`, `auto_reminder` und `parse_labels` gezielt setzen
 - Ergebnisobjekt prüfen statt nur auf Erfolg zu hoffen
 
+### 2b) Section anlegen
+
+Vorgehen:
+- zuerst `references/projects.md` lesen
+- nur dann neue Section anlegen, wenn ein stabiler wiederkehrender Arbeitscluster nicht sauber in bestehende Sections passt
+- neue Section bewusst klein und eindeutig benennen
+- nach Anlage die lokale Wissensschicht unter `memory/references/todos/` aktualisieren (`projects.json`, Routingregeln, Strukturüberblick)
+- Ergebnisobjekt prüfen und die neue `section_id` festhalten
+
+### 2c) Task strukturiert per REST anlegen
+
+Vorgehen:
+- `POST /tasks` bevorzugen, wenn `project_id`, `section_id`, `description` oder andere Felder gezielt gesetzt werden sollen
+- für Mail-basierte Tasks die `message_id` verpflichtend in der Beschreibung oder Note mitführen
+- in die Beschreibung zusätzlich knapp Quelle, Betreff und relevanten Arbeitskontext schreiben
+- nach Anlage Task erneut lesen oder per Listenaufruf des Zielkontexts verifizieren
+
 ### 3) Projects lesen
 
 Vorgehen:
@@ -144,6 +162,10 @@ Aktuelle Skripte:
   - listet Tasks mit typischen Filtern
 - `get-task.mjs`
   - lädt ein einzelnes Task-Objekt
+- `create-section.mjs`
+  - legt eine Section in einem bestehenden Projekt an
+- `create-task.mjs`
+  - legt eine Task strukturiert per REST an (`project_id`, `section_id`, `description`, Priorität)
 - `quick-add-task.mjs`
   - erstellt eine Task über Quick Add
 - `sync-resources.mjs`
